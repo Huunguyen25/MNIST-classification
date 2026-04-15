@@ -33,7 +33,6 @@ class CNN:
 
     def forward(self, x):
         """ Forward propagation """
-        
 
         return outputs
 
