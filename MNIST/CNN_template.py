@@ -1,4 +1,5 @@
 import numpy as np
+from torch import R
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
@@ -6,10 +7,10 @@ from torch.utils.data import DataLoader
 # ===================== Utility Functions ===================== #
 
 def relu(x):
-    
+    return np.maximun(0, x);
 
 def softmax(x):
-    
+    return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
 
 # ===================== Data Loading ===================== #
@@ -29,11 +30,24 @@ def load_data():
 # ===================== CNN Structure ===================== #
 class CNN:
     def __init__(self, input_size, num_filters, kernel_size, fc_output_size, lr):
+        self.input_size = input_size
+        self.num_filters = num_filters
+        self.kernel_size = kernel_size
+        self.fc_output_size = fc_output_size
+        self.lr = lr
         
-
+        self.out_dim = input_size - kernel_size + 1
+        self.flatten_size = num_filters * self.out_dim**2
+        
+        self.kernel = np.random.randn(num_filters, 1, kernel_size, kernel_size) * 0.01
+        
+        self.w2 = np.random.randn(fc_output_size, self.flatten_size) * 0.01
+        self.b2 = np.zeroes(fc_output_size, 1) * 0.01    
+    
+    
     def forward(self, x):
         """ Forward propagation """
-
+        
         return outputs
 
     def backward(self, x, y, pred):
