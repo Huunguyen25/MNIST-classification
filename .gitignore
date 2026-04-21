@@ -2,3 +2,5 @@
 lectures/
 .cursor
 env/
+data/
+MNIST/data/
