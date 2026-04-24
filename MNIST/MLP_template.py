@@ -67,7 +67,7 @@ class MLP:
 
         # compute the gradients
         
-        # sigmoid + softmax loss function derivation result in y^ - y
+        # CE + softmax loss function derivation result in y^ - y
         # dZ2 is guess - true class
         dz2 = pred - y
         #updated weight of second layer

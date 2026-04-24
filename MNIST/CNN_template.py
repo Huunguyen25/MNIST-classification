@@ -55,11 +55,8 @@ class CNN:
     
     def forward(self, x):
         """ Forward propagation """
-        batch_size = x.shape[0] // self.input_size
-        x = x.reshape(batch_size, 1, self.input_size, self.input_size)
-    
+        batch_size = x.shape[0]
         self.x_input = x
-        
         batch_size, channel, H, W = x.shape
 
         z1 = np.zeros((batch_size, self.num_filters, self.out_dim, self.out_dim))
@@ -155,7 +152,7 @@ def main():
         total_loss = 0
 
         for inputs, labels in train_loader:  # define training phase for training model
-            x = inputs.view(-1, input_size).numpy()
+            x = inputs.numpy()
             y = labels.numpy()
 
             loss = model.train(x, y)
@@ -174,7 +171,7 @@ def main():
     correct_pred = 0
     total_pred = 0
     for inputs, labels in test_loader:
-        x = inputs.view(-1, input_size).numpy()
+        x = inputs.numpy()
         y = labels.numpy()
         pred = model.forward(x)  # the model refers to the model that was trained during the training phase
         predicted_labels = np.argmax(pred, 1)
