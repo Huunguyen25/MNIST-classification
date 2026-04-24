@@ -114,7 +114,7 @@ def main():
 
     hidden_layer_size = 192
     num_classes = 10
-    learning_rate = 0.099 
+    learning_rate = 0.09943822786021822
 
     # model object here
     model = MLP(input_size=input_size, hidden_size=hidden_layer_size, a=num_classes, lr=learning_rate)
